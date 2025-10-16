@@ -14,5 +14,17 @@ import androidx.core.view.WindowCompat.enableEdgeToEdge
 import com.example.mylayout.ui.theme.MyLayoutThemeMyLayoutThemea
 
 class MainActivity : ComponentActivity() {
-    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyLayoutTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    // Panggil composable layout utama dengan padding dari Scaffold
+                    TataletakBoxColumnRow(
+                        modifier = Modifier.padding(paddingValues = innerPadding)
+                    )
+                }
+            }
+        }
+    }
 }
