@@ -2,15 +2,7 @@ package com.example.farhaddipta
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,140 +14,131 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
-// 1. TAMBAHKAN: Impor kelas R dari paket yang benar agar R.drawable dikenali
 import com.example.farhaddipta.R
 
-// Praktik terbaik: Beri nilai default Modifier()
 @Composable
 fun TataletakColumn(modifier: Modifier = Modifier) {
-    // Terapkan modifier ke komponen root
-    Column(modifier = modifier.padding(top = 20.dp, start = 20.dp, end = 20.dp)) {
-        Text(text = "kompenen 1")
-        Text(text = "komponen 2")
-        Text(text = "komponen 3")
-        Text(text = "komponen 4")
-        Text(text = "komponen 5")
+    Column(modifier = modifier.padding(20.dp)) {
+        Text("Komponen1")
+        Text("Komponen2")
+        Text("Komponen3")
+        Text("Komponen4")
+    }
+}
+
+@Composable
+fun TataletakRow(modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        Text("Komponen1")
+        Text("Komponen2")
+        Text("Komponen3")
+        Text("Komponen4")
     }
 }
 
 @Composable
 fun TataletakBox(modifier: Modifier = Modifier) {
-    // Terapkan modifier ke komponen root
     Box(
         modifier = modifier
-            .fillMaxHeight()
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .height(100.dp)
+            .background(Color.LightGray),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Box 1")
-        Text(text = "Column 1")
-        Text(text = "Row 1")
-        Text(text = "Box 2")
-        Text(text = "column 2")
+        Text("Ini di dalam Box", fontWeight = FontWeight.Bold)
     }
 }
 
 @Composable
-fun TaataaletakColumnRow(modifier: Modifier = Modifier) {
-    // 2. PERBAIKI: Terapkan modifier parameter HANYA ke komponen root (Column)
-    Column(modifier = modifier) {
-        // Baris 1: Gunakan Modifier baru
+fun TataletakColumnRow(modifier: Modifier = Modifier) {
+    Column(modifier = modifier.padding(8.dp)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            Text(text = "Komponen1Baris1")
-            Text(text = "Komponen2Baris1")
-            Text(text = "Komponen3Baris1")
+            Text("Baris1-Komponen1")
+            Text("Baris1-Komponen2")
+            Text("Baris1-Komponen3")
         }
-        // Baris 2: Gunakan Modifier baru
+        Spacer(Modifier.height(10.dp))
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            Text(text = "Komponen1Baris2")
-            Text(text = "Komponen2Baris2")
-            Text(text = "Komponen3Baris2")
+            Text("Baris2-Komponen1")
+            Text("Baris2-Komponen2")
+            Text("Baris2-Komponen3")
         }
     }
 }
 
 @Composable
 fun TataletakRowColumn(modifier: Modifier = Modifier) {
-    // 2. PERBAIKI: Terapkan modifier parameter HANYA ke komponen root (Row)
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        // Kolom 1
-        Column {
-            Text(text = "Komponen1Kolom1")
-            Text(text = "Komponen2Kolom1")
-            Text(text = "Komponen3Kolom1")
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("Kolom1-Komponen1")
+            Text("Kolom1-Komponen2")
+            Text("Kolom1-Komponen3")
         }
-        // Kolom 2
-        Column {
-            Text(text = "Komponen1Kolom2")
-            Text(text = "Komponen2Kolom2")
-            Text(text = "komponen3kolom2")
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("Kolom2-Komponen1")
+            Text("Kolom2-Komponen2")
+            Text("Kolom2-Komponen3")
         }
     }
 }
 
 @Composable
 fun TataletakBoxColumnRow(modifier: Modifier = Modifier) {
-    // Pastikan file 'notasibalok' sudah ada di folder res/drawable
     val gambar = painterResource(id = R.drawable.notasibalok)
-
-    // 2. PERBAIKI: Terapkan modifier parameter HANYA ke komponen root (Column)
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color.White), // latar putih
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Box(
-            // Gunakan Modifier baru untuk Box ini
             modifier = Modifier
-                .fillMaxWidth()
-                .height(height = 110.dp)
-                .background(color = Color.Yellow),
+                .size(300.dp) // area gambar + teks
+                .background(Color.Transparent),
             contentAlignment = Alignment.Center
         ) {
-            Column {
-                // Gunakan Modifier baru untuk Row ini
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    Text(text = "Col1_Row1_komponen1")
-                    Text(text = "Col1_Row1_komponen2")
-                    Text(text = "Col1_Row1_komponen3")
-                }
-                // Gunakan Modifier baru untuk Row ini
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    Text(text = "Col1_Row2_komponen1")
-                    Text(text = "Col1_Row2_komponen2")
-                    Text(text = "Col1_Row2_komponen3")
-                }
-            }
-        }
-
-        // Gunakan Modifier baru untuk Spacer
-        Spacer(modifier = Modifier.height(height = 10.dp))
-
-        Box(
-            // Gunakan Modifier baru untuk Box ini
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(height = 300.dp)
-                .background(color = Color.Cyan),
-            contentAlignment = Alignment.Center
-        ) {
-            Image(painter = gambar, contentDescription = "Gambar Notasi Balok", contentScale = ContentScale.Fit)
-            Text(
-                text = "my music", fontSize = 50.sp, color = Color.Red, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Cursive,
-                modifier = Modifier.align(alignment = Alignment.Center)
+            Image(
+                painter = gambar,
+                contentDescription = "Gambar Lochness",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier.size(170.dp)
             )
+            Text(
+                text = "Lochness",
+                fontSize = 80.sp,
+                color = Color(0xFF008080),
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Cursive,
+                modifier = Modifier.align(Alignment.Center)
+            )
+            Text(
+                text = "Farhad Dipta Utama",
+                fontSize = 35.sp,
+                color = Color(0xFF008080),
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Cursive,
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .offset(y = (-180).dp)
+
+            )
+
         }
     }
 }
